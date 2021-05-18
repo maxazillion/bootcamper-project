@@ -1,15 +1,11 @@
-package com.organization.mvcproject.MGL_Task1.service;
+package com.organization.mvcproject.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.organization.mvcproject.models.Game;
 
-@Service("javaGameService")
-public class Game_Service_Impl implements Game_Service {
-
+public class GameDaoImpl implements GameDao {
 	private static Long gameId = new Long(0);
 	private static Long companyId = new Long(0);
 	private static List<Game> games = new ArrayList<Game>();
@@ -52,30 +48,6 @@ public class Game_Service_Impl implements Game_Service {
 		game.setId(++gameId);
 		games.add(game);
 		return game;
-	}
-
-	public static Long getGameId() {
-		return gameId;
-	}
-
-	public static void setGameId(Long gameId) {
-		Game_Service_Impl.gameId = gameId;
-	}
-
-	public static Long getCompanyId() {
-		return companyId;
-	}
-
-	public static void setCompanyId(Long companyId) {
-		Game_Service_Impl.companyId = companyId;
-	}
-
-	public static List<Game> getGames() {
-		return games;
-	}
-
-	public static void setGames(ArrayList<Game> games) {
-		Game_Service_Impl.games = games;
 	}
 
 }
