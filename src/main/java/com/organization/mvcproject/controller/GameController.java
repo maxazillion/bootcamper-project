@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.organization.mvcproject.MGL_Task1.service.Game_Service;
+import com.organization.mvcproject.dao.GameDao;
 import com.organization.mvcproject.models.Game;
 import com.organization.mvcproject.models.Review;
 
@@ -26,16 +27,19 @@ public class GameController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
+		System.out.println("this is: home");
 		return "index";
 	}
 
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public ModelAndView review() {
+		System.out.println("this is: review");
 		return new ModelAndView("review", "command", new Review());
 	}
 
 	@RequestMapping(value = "/addReview", method = RequestMethod.POST)
 	public ModelAndView addReview(Review review, ModelMap model) {
+		System.out.println("this is: add review");
 		if(review.getAuthor().equals("")) {
 			review.setAuthor("anonymous");
 		}
@@ -57,4 +61,10 @@ public class GameController {
 		javaGameService.saveGame(game);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
+	
+//	@RequestMapping(value = "/remove", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Void> deleteGame(@RequestBody Long id){
+//		javaGameService.deleteGame(id);
+//		return new ResponseEntity<Void>(HttpStatus.OK);
+//	}
 }

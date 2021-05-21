@@ -14,7 +14,7 @@ public class HomeController {
         ret.addObject("name", testingMethod());
         
         //logs to console 
-        practiceLoop();
+        practice();
         
         return ret;
     }
@@ -23,13 +23,8 @@ public class HomeController {
 	private String testingMethod() {
         return "testing Method";
     }
-    private String practiceLoop() {
-        String testString = "";
-        for(int i=0; i<=10; i++) {
-            System.out.println("i: "+i);
-            testString += i;
-            System.out.println("testString: " + testString);
-        }
-        return testString;
+    private void practice() {
+        
+        
     }
 }

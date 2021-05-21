@@ -8,4 +8,8 @@ public interface GameDao {
 	List<Game> retrieveAllGames();
 
 	Game saveGame(Game game);
+	
+	Game findGame(Long id);
+	
+	void removeGame(Long id);
 }

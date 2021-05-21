@@ -50,4 +50,26 @@ public class GameDaoImpl implements GameDao {
 		return game;
 	}
 
+	@Override
+	public Game findGame(Long id) {
+		for(Game game: games) {
+			if(game.getId() == id) {
+				return game;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void removeGame(Long id) {
+		Game gameToDelete = findGame(id);
+	
+		if(!games.contains(gameToDelete)) {
+			System.out.println("game doesnt exist");
+		}
+		else {
+			games.remove(games.indexOf(gameToDelete));
+		}
+	}
+
 }

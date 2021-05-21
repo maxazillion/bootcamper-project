@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.organization.mvcproject.dao.GameDaoImpl;
 import com.organization.mvcproject.models.Game;
 
 @Service("javaGameService")
@@ -13,6 +14,7 @@ public class Game_Service_Impl implements Game_Service {
 	private static Long gameId = new Long(0);
 	private static Long companyId = new Long(0);
 	private static List<Game> games = new ArrayList<Game>();
+	private static GameDaoImpl dao = new GameDaoImpl();
 
 	static {
 		games = populateGames();
@@ -39,11 +41,14 @@ public class Game_Service_Impl implements Game_Service {
 		games.add(game2);
 		games.add(game3);
 
+		
+		
 		return games;
 	}
 
 	@Override
 	public List<Game> retrieveAllGames() {
+		dao.removeGame(1L);
 		return games;
 	}
 
@@ -73,7 +78,7 @@ public class Game_Service_Impl implements Game_Service {
 	public static List<Game> getGames() {
 		return games;
 	}
-
+	
 	public static void setGames(ArrayList<Game> games) {
 		Game_Service_Impl.games = games;
 	}

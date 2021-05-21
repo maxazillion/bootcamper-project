@@ -21,6 +21,11 @@ public class Game {
 		return name;
 	}
 
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", name=" + name + ", genre=" + genre + "]";
+	}
+
 	public void setName(String gameName) {
 		this.name = gameName;
 	}
