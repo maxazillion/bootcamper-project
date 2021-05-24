@@ -53,7 +53,7 @@ public class GameDaoImpl implements GameDao {
 	@Override
 	public Game findGame(Long id) {
 		for(Game game: games) {
-			if(game.getId() == id) {
+			if(id.equals(game.getId())) {
 				return game;
 			}
 		}

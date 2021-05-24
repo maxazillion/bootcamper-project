@@ -18,7 +18,7 @@ public class HelloIT{
 	
 	@Before
 	public void setup() {
-		port = System.getProperty("servlet.port", "8081");
+		port = System.getProperty("servlet.port", "8083");
 	}
 
 	@Test

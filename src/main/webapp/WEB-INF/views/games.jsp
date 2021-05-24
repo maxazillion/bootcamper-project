@@ -74,13 +74,30 @@
             </div>
             <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <div class="panel-heading text-light"><span class="lead">List of all current games</span></div>
+                <div class="panel-heading text-light"><span class="lead">List of games</span></div>
+               
+				<div class="form-check mb-2 bg-secondary text-white rounded col-md-7">
+					<div class="m-2 r-4">
+					    <span class="lead">Search By Genre</span>
+					    <div class="row mt-2">
+	                            <div class="form-group col-md-12">
+	                                <div class="row-md-7">
+	                                    <input type="text" id="search" class="form-control input-sm" placeholder="Enter the genre" />
+	                                    <input type="submit" value="Search" class="btn btn-primary btn-sm mt-2">
+	                                </div>
+	                            </div>
+	                        </div>
+					  </div>
+				</div>
+               
+			</div> 
                 <div class="tablecontainer">
                     <table class="table table-dark table-striped text-light">
                         <thead>
                             <tr>
                                 <th>Game Name</th>
                                 <th>Game Genre</th>
+                                <th>Actions</th>
                                 <th width="20%"></th>
                             </tr>
                         </thead>
@@ -88,7 +105,7 @@
                             <tr ng-repeat="currentGame in MGL_T1_ctrl.games">
                                 <td><span ng-bind="currentGame.name"></span></td>
                                 <td><span ng-bind="currentGame.genre"></span></td>
-                                <td></td>
+                                <td><input type="submit" value="Delete" class="btn btn-primary btn-sm"></td>
                             </tr>
                         </tbody>
                     </table>
