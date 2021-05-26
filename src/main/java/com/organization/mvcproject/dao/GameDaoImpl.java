@@ -51,19 +51,33 @@ public class GameDaoImpl implements GameDao {
 	}
 
 	@Override
-	public Game findGame(Long id) {
+	public List<Game> findGame(Long id) {
 		for(Game game: games) {
 			if(id.equals(game.getId())) {
-				return game;
+				List <Game> retList = new ArrayList<Game>();
+				retList.add(game);
+				return retList;
 			}
 		}
 		return null;
 	}
+	
+	@Override
+	public List<Game>findGame(String genre){
+		List<Game> returnList = new ArrayList<Game>();
+		for(Game game : games) {
+			if(genre.equals(game.getGenre())){
+				returnList.add(game);
+			}
+		}
+		return returnList;
+		
+	}
 
 	@Override
 	public void removeGame(Long id) {
-		Game gameToDelete = findGame(id);
-	
+		List <Game> gameToDeleteList = findGame(id);
+		Game gameToDelete = gameToDeleteList.get(0);
 		if(!games.contains(gameToDelete)) {
 			System.out.println("game doesnt exist");
 		}

@@ -9,7 +9,10 @@ public interface GameDao {
 
 	Game saveGame(Game game);
 	
-	Game findGame(Long id);
+	List <Game> findGame(Long id);
+	
+	List <Game> findGame(String genre);
 	
 	void removeGame(Long id);
+	
 }

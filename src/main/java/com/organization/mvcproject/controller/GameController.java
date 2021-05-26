@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.organization.mvcproject.MGL_Task1.service.Game_Service;
 import com.organization.mvcproject.dao.GameDao;
+import com.organization.mvcproject.dao.GameDaoImpl;
 import com.organization.mvcproject.models.Game;
 import com.organization.mvcproject.models.Review;
 
@@ -24,10 +25,10 @@ public class GameController {
 
 	@Autowired
 	private Game_Service javaGameService;
+	private static GameDaoImpl dao = new GameDaoImpl();
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		System.out.println("this is: home");
 		return "index";
 	}
 
@@ -53,18 +54,28 @@ public class GameController {
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public ResponseEntity<List<Game>> fetchAllGames() {
-		return new ResponseEntity<List<Game>>(javaGameService.retrieveAllGames(), HttpStatus.OK);
+		return new ResponseEntity<List<Game>>(dao.retrieveAllGames(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getFiltered", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<Game>> filterGames(@RequestBody String filterTerm) {
+		return new ResponseEntity<List<Game>>(dao.findGame(filterTerm), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getFilteredById", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Game>> filterGamesById(@RequestBody Long id) {
+		return new ResponseEntity<List<Game>>(dao.findGame(id), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/createGame", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createGame(@RequestBody Game game) {
-		javaGameService.saveGame(game);
+		dao.saveGame(game);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-//	@RequestMapping(value = "/remove", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<Void> deleteGame(@RequestBody Long id){
-//		javaGameService.deleteGame(id);
-//		return new ResponseEntity<Void>(HttpStatus.OK);
-//	}
+	@RequestMapping(value = "/removeGame", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> removeGame(@RequestBody Long id){
+		dao.removeGame(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 }

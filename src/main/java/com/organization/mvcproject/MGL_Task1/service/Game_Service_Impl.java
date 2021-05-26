@@ -48,7 +48,8 @@ public class Game_Service_Impl implements Game_Service {
 
 	@Override
 	public List<Game> retrieveAllGames() {
-		dao.removeGame(1L);
+		System.out.println("heyhome");
+		System.out.println(dao.findGame("MMORPG"));
 		return games;
 	}
 
